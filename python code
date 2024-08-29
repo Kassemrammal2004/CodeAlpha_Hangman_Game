@@ -1,0 +1,39 @@
+import random
+def hangman():
+    print("Hello this is Hangman game, enjoy!!")
+    list_of_words = ["word","codealpha","JAVA","Python","Good","real","Amazing"]
+    #----------------------------------
+    word = random.choice(list_of_words)
+    word = word.lower()
+    main_word = word
+    incorrect = 7
+    gussed_letters = []
+    #------------------
+    while incorrect!=0:
+        print(f"Left times: {incorrect}")
+        print("please enter a letter: ",end="")
+        letter = input().lower()
+        #--------------------------------------------------
+        if letter in word:
+            letter_index = word.index(letter)
+            word = word[:letter_index]+word[letter_index+1:]
+            gussed_letters.append(letter)
+            print(letter+" is correct letter")
+            #---------------------------------
+            if all(i in gussed_letters for i in main_word):
+                print(f"Congratulation You find the correct letter '{main_word}' !!")
+                break
+        #-------------------------------------------------------------
+        elif letter not in word:
+            incorrect = incorrect-1
+            print(letter+" not in the word!")
+            if all(i in gussed_letters for i in main_word):
+                print(f"Congratulation You find the correct letter '{main_word}' !!")
+                break
+        #-----------------------------------
+    if incorrect ==0:
+        print(f"Sorry Dear, the correct word was: {word}")
+    #-----------------------------------------------------
+hangman()
+
+        
